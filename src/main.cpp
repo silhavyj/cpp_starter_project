@@ -1,28 +1,3 @@
-//========================================================================
-// Simple multi-window example
-// Copyright (c) Camilla Löwy <elmindreda@glfw.org>
-//
-// This software is provided 'as-is', without any express or implied
-// warranty. In no event will the authors be held liable for any damages
-// arising from the use of this software.
-//
-// Permission is granted to anyone to use this software for any purpose,
-// including commercial applications, and to alter it and redistribute it
-// freely, subject to the following restrictions:
-//
-// 1. The origin of this software must not be misrepresented; you must not
-//    claim that you wrote the original software. If you use this software
-//    in a product, an acknowledgment in the product documentation would
-//    be appreciated but is not required.
-//
-// 2. Altered source versions must be plainly marked as such, and must not
-//    be misrepresented as being the original software.
-//
-// 3. This notice may not be removed or altered from any source
-//    distribution.
-//
-//========================================================================
-
 #define GLAD_GL_IMPLEMENTATION
 #include <glad/gl.h>
 #define GLFW_INCLUDE_NONE
@@ -54,6 +29,27 @@ int main(int argc, char** argv)
     ;
 
     fmt::print("{}", options.help());
+
+    spdlog::info("Welcome to spdlog!");
+    spdlog::error("Some error message with arg: {}", 1);
+    
+    spdlog::warn("Easy padding in numbers like {:08d}", 12);
+    spdlog::critical("Support for int: {0:d};  hex: {0:x};  oct: {0:o}; bin: {0:b}", 42);
+    spdlog::info("Support for floats {:03.2f}", 1.23456);
+    spdlog::info("Positional args are {1} {0}..", "too", "supported");
+    spdlog::info("{:<30}", "left aligned");
+    
+    spdlog::set_level(spdlog::level::debug); // Set global log level to debug
+    spdlog::debug("This message should be displayed..");    
+    
+    // change log pattern
+    spdlog::set_pattern("[%H:%M:%S %z] [%n] [%^---%L---%$] [thread %t] %v");
+    
+    // Compile time log levels
+    // define SPDLOG_ACTIVE_LEVEL to desired level
+    SPDLOG_TRACE("Some trace message with param {}", 42);
+    SPDLOG_DEBUG("Some debug message");
+
 
     enum Color { RED, BLUE, WHITE, GREEN };
     constexpr auto color_count = magic_enum::enum_count<Color>();
