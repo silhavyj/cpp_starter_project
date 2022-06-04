@@ -4,6 +4,10 @@ add_executable(
     main.cpp
     tests1.cpp ../src/my_math.cpp)
 
+# Add the src directory as an include directory,
+# so there is no need to specify relative paths
+include_directories(../src)
+
 # Link googletest to the final executable
 target_link_libraries(mytest gtest)
 
