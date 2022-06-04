@@ -19,14 +19,14 @@ project(
 include_directories(lib)
 include_directories(include)
 
-include_directories(extern/glfw/include)
-include_directories(extern/glfw/deps)
+include_directories(external/glfw/include)
+include_directories(external/glfw/deps)
 
 # Add submodules (libraries)
-add_subdirectory(extern/spdlog)
-add_subdirectory(extern/cxxopts)
-add_subdirectory(extern/googletest)
-add_subdirectory(extern/glfw)
+add_subdirectory(external/spdlog)
+add_subdirectory(external/cxxopts)
+add_subdirectory(external/googletest)
+add_subdirectory(external/glfw)
 
 # Add src folder
 add_subdirectory(src)
