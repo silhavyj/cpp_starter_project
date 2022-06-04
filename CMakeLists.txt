@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.0)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Add name of the project, version, description,
+# Add the name of the project, version, description,
 # home URL, and a list of all languages used in the project
 project(
     myproject
@@ -26,7 +26,7 @@ endif()
 include_directories(lib)
 include_directories(include)
 
-# Add sumbodules (libraries)
+# Add submodules (libraries)
 add_subdirectory(extern/spdlog)
 add_subdirectory(extern/cxxopts)
 add_subdirectory(extern/googletest)

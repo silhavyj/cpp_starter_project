@@ -1,5 +1,4 @@
-# List all source files that make up the
-# final executable file  
+# List all source files that make up the final executable
 add_executable(
     ${PROJECT_NAME}
     main.cpp

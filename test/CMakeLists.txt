@@ -1,5 +1,4 @@
-# List all test files that make up the
-# final executable (mytest)
+# List all test files that make up the final executable (mytest)
 add_executable(
     mytest 
     main.cpp
