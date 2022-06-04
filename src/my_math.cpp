@@ -3,8 +3,7 @@
 namespace my_math {
 
     int add(int x, int y) {
-        int z = x + y;
-        return z < 0 ? (-z) : z;
+        return x + y;
     }
 
     int sub(int x, int y) {
