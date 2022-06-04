@@ -14,22 +14,19 @@ project(
     HOMEPAGE_URL "%%myurl%%"
     LANGUAGES CXX C)
 
-# Specify compile options
-if(MSVC)
-    string(REGEX REPLACE "/W[1-3]" "/W4" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
-else()
-    add_compile_options(-Wall -Wextra -pedantic -Werror)
-endif()
-
 # Add include directories, so there is no need
 # to specify relative paths
 include_directories(lib)
 include_directories(include)
 
+include_directories(extern/glfw/include)
+include_directories(extern/glfw/deps)
+
 # Add submodules (libraries)
 add_subdirectory(extern/spdlog)
 add_subdirectory(extern/cxxopts)
 add_subdirectory(extern/googletest)
+add_subdirectory(extern/glfw)
 
 # Add src folder
 add_subdirectory(src)
