@@ -18,6 +18,7 @@ project(
 # to specify relative paths
 include_directories(lib)
 include_directories(include)
+include_directories(external/imgui)
 
 # Add submodules (libraries)
 add_subdirectory(external/spdlog)
