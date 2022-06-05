@@ -8,6 +8,10 @@ endif()
 # Locate OpenGL (this dependency must be installed separately)
 find_package(OpenGL REQUIRED)
 
+# Add include directories, so there is no need to specify relative paths
+include_directories(../external/imgui)
+include_directories(../external/imgui/backends)
+
 # Find all .cpp files (recursively)
 file(GLOB_RECURSE cpp_files "./*.cpp")
 
