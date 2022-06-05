@@ -16,4 +16,4 @@ target_link_libraries(
     ${PROJECT_NAME}
     spdlog
     cxxopts
-    glfw)
+    SDL2)

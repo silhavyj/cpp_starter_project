@@ -1,16 +1,9 @@
-#define GLAD_GL_IMPLEMENTATION
-#include <glad/gl.h>
-#define GLFW_INCLUDE_NONE
-#include <GLFW/glfw3.h>
-
-#include <stdio.h>
-#include <stdlib.h>
-
 #include <spdlog/spdlog.h>
 #include <spdlog/fmt/fmt.h>
 #include <cxxopts.hpp>
 #include <magic_enum/magic_enum.hpp>
 #include <nlohmann/json.hpp>
+#include <SDL2/SDL.h>
 
 int main(int argc, char** argv)
 {
@@ -72,77 +65,35 @@ int main(int argc, char** argv)
 
     fmt::print("{}", j2.dump());
 
-    int xpos, ypos, height;
-    const char* description;
-    GLFWwindow* windows[4];
+    SDL_Window* window = SDL_CreateWindow(
+        "Game of Life", SDL_WINDOWPOS_UNDEFINED,
+        SDL_WINDOWPOS_UNDEFINED,
+        640,
+        480,
+        SDL_WINDOW_SHOWN
+    );
+    
+    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1,SDL_RENDERER_ACCELERATED);
 
-    if (!glfwInit())
-    {
-        glfwGetError(&description);
-        printf("Error: %s\n", description);
-        exit(EXIT_FAILURE);
-    }
+    SDL_Event event;
+    bool end = false;
 
-    glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
-    glfwWindowHint(GLFW_DECORATED, GLFW_FALSE);
-
-    glfwGetMonitorWorkarea(glfwGetPrimaryMonitor(), &xpos, &ypos, NULL, &height);
-
-    for (int i = 0;  i < 4;  i++)
-    {
-        const int size = height / 5;
-        const struct
-        {
-            float r, g, b;
-        } colors[] =
-        {
-            { 0.95f, 0.32f, 0.11f },
-            { 0.50f, 0.80f, 0.16f },
-            {   0.f, 0.68f, 0.94f },
-            { 0.98f, 0.74f, 0.04f }
-        };
-
-        if (i > 0)
-            glfwWindowHint(GLFW_FOCUS_ON_SHOW, GLFW_FALSE);
-
-        windows[i] = glfwCreateWindow(size, size, "Multi-Window Example", NULL, NULL);
-        if (!windows[i])
-        {
-            glfwGetError(&description);
-            printf("Error: %s\n", description);
-            glfwTerminate();
-            exit(EXIT_FAILURE);
-        }
-
-        glfwSetWindowPos(windows[i],
-                         xpos + size * (1 + (i & 1)),
-                         ypos + size * (1 + (i >> 1)));
-        glfwSetInputMode(windows[i], GLFW_STICKY_KEYS, GLFW_TRUE);
-
-        glfwMakeContextCurrent(windows[i]);
-        gladLoadGL(glfwGetProcAddress);
-        glClearColor(colors[i].r, colors[i].g, colors[i].b, 1.f);
-    }
-
-    for (int i = 0;  i < 4;  i++)
-        glfwShowWindow(windows[i]);
-
-    for (;;)
-    {
-        for (int i = 0;  i < 4;  i++)
-        {
-            glfwMakeContextCurrent(windows[i]);
-            glClear(GL_COLOR_BUFFER_BIT);
-            glfwSwapBuffers(windows[i]);
-
-            if (glfwWindowShouldClose(windows[i]) ||
-                glfwGetKey(windows[i], GLFW_KEY_ESCAPE))
-            {
-                glfwTerminate();
-                exit(EXIT_SUCCESS);
+    while (!end) {
+        while(SDL_PollEvent(&event) ){
+            switch(event.type) {
+                case SDL_QUIT:
+                    end = true;
+                    break;
+                default:
+                    break;
             }
         }
-
-        glfwWaitEvents();
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+        SDL_RenderClear(renderer);
+        SDL_Delay(100);
     }
+
+    SDL_DestroyWindow(window);
+    SDL_Quit();
+    return 0;
 }
