@@ -3,7 +3,7 @@
 #include <cxxopts.hpp>
 #include <magic_enum/magic_enum.hpp>
 #include <nlohmann/json.hpp>
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 int main(int argc, char** argv) {
     (void)argc;
@@ -39,8 +39,8 @@ int main(int argc, char** argv) {
     
     // Compile time log levels
     // define SPDLOG_ACTIVE_LEVEL to desired level
-    SPDLOG_TRACE("Some trace message with param {}", 42);
-    SPDLOG_DEBUG("Some debug message");
+    //SPDLOG_TRACE("Some trace message with param {}", 42);
+    //SPDLOG_DEBUG("Some debug message");
 
     enum Color { RED, BLUE, WHITE, GREEN };
     constexpr auto color_count = magic_enum::enum_count<Color>();
@@ -64,7 +64,7 @@ int main(int argc, char** argv) {
     fmt::print("{}", j2.dump());
 
     SDL_Window* window = SDL_CreateWindow(
-        "Some title",
+        "<title>",
         SDL_WINDOWPOS_UNDEFINED,
         SDL_WINDOWPOS_UNDEFINED,
         640,
@@ -72,12 +72,13 @@ int main(int argc, char** argv) {
         SDL_WINDOW_SHOWN
     );
     
-    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1,SDL_RENDERER_ACCELERATED);
+    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
     SDL_Event event;
     bool end = false;
 
     while (!end) {
+        // Process events
         while (SDL_PollEvent(&event) ){
             switch (event.type) {
                 case SDL_QUIT:
@@ -87,12 +88,20 @@ int main(int argc, char** argv) {
                     break;
             }
         }
+
+        // Clear the window
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
-        SDL_Delay(100);
+
+        // Render a rectangle
+        static SDL_Rect rect{10, 10, 10, 10};
+        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+        SDL_RenderFillRect(renderer, &rect);
+        SDL_RenderPresent(renderer);
     }
 
     SDL_DestroyWindow(window);
     SDL_Quit();
+
     return 0;
 }
