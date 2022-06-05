@@ -30,8 +30,5 @@ add_subdirectory(external/sdl)
 add_subdirectory(src)
 
 # Add test folder
-option(ENABLE_TESTING "Enable the tests" ${PROJECT_IS_TOP_LEVEL})
-if(ENABLE_TESTING)
-  enable_testing()
-  add_subdirectory(test)
-endif()
+enable_testing()
+add_subdirectory(test)
