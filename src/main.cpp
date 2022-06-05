@@ -5,8 +5,7 @@
 #include <nlohmann/json.hpp>
 #include <SDL2/SDL.h>
 
-int main(int argc, char** argv)
-{
+int main(int argc, char** argv) {
     (void)argc;
     (void)argv;
 
@@ -43,7 +42,6 @@ int main(int argc, char** argv)
     SPDLOG_TRACE("Some trace message with param {}", 42);
     SPDLOG_DEBUG("Some debug message");
 
-
     enum Color { RED, BLUE, WHITE, GREEN };
     constexpr auto color_count = magic_enum::enum_count<Color>();
     fmt::print("count = {}\n", color_count);
@@ -66,7 +64,8 @@ int main(int argc, char** argv)
     fmt::print("{}", j2.dump());
 
     SDL_Window* window = SDL_CreateWindow(
-        "Game of Life", SDL_WINDOWPOS_UNDEFINED,
+        "Some title",
+        SDL_WINDOWPOS_UNDEFINED,
         SDL_WINDOWPOS_UNDEFINED,
         640,
         480,
@@ -79,8 +78,8 @@ int main(int argc, char** argv)
     bool end = false;
 
     while (!end) {
-        while(SDL_PollEvent(&event) ){
-            switch(event.type) {
+        while (SDL_PollEvent(&event) ){
+            switch (event.type) {
                 case SDL_QUIT:
                     end = true;
                     break;
