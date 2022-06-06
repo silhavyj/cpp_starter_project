@@ -45,8 +45,8 @@ int main(int argc, char** argv) {
     
     // Compile time log levels
     // define SPDLOG_ACTIVE_LEVEL to desired level
-    //SPDLOG_TRACE("Some trace message with param {}", 42);
-    //SPDLOG_DEBUG("Some debug message");
+    SPDLOG_TRACE("Some trace message with param {}", 42);
+    SPDLOG_DEBUG("Some debug message");
 
     enum Color { RED, BLUE, WHITE, GREEN };
     constexpr auto color_count = magic_enum::enum_count<Color>();
