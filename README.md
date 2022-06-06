@@ -14,3 +14,15 @@ make -C build
 ```
 ./build/test/mytest
 ```
+
+```
+docker build -t myproject-docker-image .
+```
+
+```
+docker run --name myproject myproject-docker-image
+```
+
+```
+docker start -a myproject
+```
