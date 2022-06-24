@@ -45,3 +45,9 @@ docker run --name myproject myproject-docker-image
 ```
 docker start -a myproject
 ```
+
+## Generating a documentation
+
+```
+doxygen doxygen.conf
+```
