@@ -49,5 +49,9 @@ docker start -a myproject
 ## Generating a documentation
 
 ```
+mkdir -p doc/doxygen
+```
+
+```
 doxygen doxygen.conf
 ```
