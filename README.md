@@ -9,7 +9,7 @@ git clone --recursive https://github.com/silhavyj/cpp_starter_project.git
 ### Compilation
 
 ```
-cmake -S . -B build
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 make -C build
 ```
 

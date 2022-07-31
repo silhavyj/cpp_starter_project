@@ -8,6 +8,7 @@
 #include <SDL_opengl.h>
 #include <imgui_impl_sdl.h>
 #include <imgui_impl_opengl2.h>
+#include <implot.h>
 #include <stdio.h>
 
 #include "ui/ui.h"
@@ -94,6 +95,7 @@ int main(int argc, char** argv) {
     // Setup Dear ImGui context
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
+    ImPlot::CreateContext();
     ImGuiIO& io = ImGui::GetIO(); (void)io;
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
     //io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
@@ -188,6 +190,7 @@ int main(int argc, char** argv) {
     // Cleanup
     ImGui_ImplOpenGL2_Shutdown();
     ImGui_ImplSDL2_Shutdown();
+    ImPlot::DestroyContext();
     ImGui::DestroyContext();
 
     SDL_GL_DeleteContext(gl_context);
