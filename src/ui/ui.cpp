@@ -11,12 +11,14 @@ namespace myProject
 {
     static bool show_demo_window = true;
     static bool show_another_window = false;
+
     static ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
     static void drawFirstWindow();
     static void drawSecondWindow();
     static void drawThirdWindow();
     static void drawFourthWindow();
+    static void drawFifthWindow();
 
     void renderUI()
     {
@@ -24,6 +26,7 @@ namespace myProject
         drawSecondWindow();
         drawThirdWindow();
         drawFourthWindow();
+        drawFifthWindow();
     }   
 
     static void drawFirstWindow()
@@ -75,7 +78,6 @@ namespace myProject
 
     static void drawFourthWindow()
     {
-
         static std::default_random_engine randomEngine(time(nullptr));
         static std::uniform_real_distribution<double> distribution(std::numeric_limits<double>::min(),
                                                                    std::numeric_limits<double>::max());
@@ -91,5 +93,10 @@ namespace myProject
             ImPlot::EndPlot();
         }
         ImGui::End();
+    }
+
+    static void drawFifthWindow()
+    {
+        ImPlot::ShowDemoWindow();
     }
 }
