@@ -1,6 +1,6 @@
 #pragma once
 
-namespace my_math
+namespace MyMath
 {
     /// Adds up two given integer numbers
     /// \param x the first number

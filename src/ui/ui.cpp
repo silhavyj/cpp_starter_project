@@ -32,7 +32,8 @@ namespace myProject
     static void drawFirstWindow()
     {
         // 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
-        if (show_demo_window) {
+        if (show_demo_window)
+        {
             ImGui::ShowDemoWindow(&show_demo_window);
         }
     }
@@ -52,7 +53,8 @@ namespace myProject
         ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
         ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
 
-        if (ImGui::Button("Button")) {                          // Buttons return true when clicked (most widgets return true when edited/activated)
+        if (ImGui::Button("Button"))
+        {                                                       // Buttons return true when clicked (most widgets return true when edited/activated)
             counter++;
         }
 
@@ -66,10 +68,12 @@ namespace myProject
     static void drawThirdWindow()
     {
         // 3. Show another simple window.
-        if (show_another_window) {
+        if (show_another_window)
+        {
             ImGui::Begin("Another Window", &show_another_window);   // Pass a pointer to our bool variable (the window will have a closing button that will clear the bool when clicked)
             ImGui::Text("Hello from another window!");
-            if (ImGui::Button("Close Me")) {
+            if (ImGui::Button("Close Me"))
+            {
                 show_another_window = false;
             }
             ImGui::End();
@@ -83,12 +87,15 @@ namespace myProject
                                                                    std::numeric_limits<double>::max());
 
         static std::vector<double> data;
-        for (int i = 0; i < 10; i++) {
+        
+        for (int i = 0; i < 10; i++)
+        {
             data.emplace_back(distribution(randomEngine));
         }
 
         ImGui::Begin("My Window");
-        if (ImPlot::BeginPlot("My Plot")) {
+        if (ImPlot::BeginPlot("My Plot"))
+        {
             ImPlot::PlotBars("My Bar Plot", &data[0], data.size());
             ImPlot::EndPlot();
         }

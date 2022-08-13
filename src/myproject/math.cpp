@@ -1,6 +1,6 @@
-#include "my_math.h"
+#include "math.h"
 
-namespace my_math
+namespace MyMath
 {
     int add(int x, int y)
     {
